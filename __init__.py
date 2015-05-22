@@ -47,13 +47,13 @@ class Finder:
         return doc
 
     def count(self):
-        self._cur = self._con.cursor()
+        cur = self._con.cursor()
         if self._where is None:
-            self._cur.execute('SELECT COUNT(*) FROM `' + self._name + '`')
+            cur.execute('SELECT COUNT(*) FROM `' + self._name + '`')
         else:
-            self._cur.execute('SELECT COUNT(*) FROM `' + self._name + '` WHERE docs_matches(document)')
+            cur.execute('SELECT COUNT(*) FROM `' + self._name + '` WHERE docs_matches(document)')
 
-        row = self._cur.fetchone()
+        row = cur.fetchone()
         return row[0]
 
 
